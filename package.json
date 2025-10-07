@@ -9,10 +9,7 @@
     "copy-assets": "mkdir -p dist && cp -r *.html *.css *.js data node_modules dist/",
     "serve": "live-server dist --port=8080",
     "start": "npm run dev",
-    "netlify-dev": "netlify dev",
-    "setup-env": "python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt",
-    "convert-pdf": "source venv/bin/activate && python scripts/pdf_to_text.py",
-    "install-python-deps": "source venv/bin/activate && pip install -r requirements.txt"
+    "netlify-dev": "netlify dev"
   },
   "keywords": [
     "flashcards",
@@ -24,12 +21,13 @@
   "author": "Your Name",
   "license": "MIT",
   "dependencies": {
-    "animejs": "^3.2.2"
+    "animejs": "^3.2.2",
+    "swiper": "^12.0.2"
   },
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "live-server": "^1.2.2",
-    "netlify-cli": "^17.0.0",
-    "concurrently": "^8.2.2"
+    "netlify-cli": "^17.0.0"
   },
   "repository": {
     "type": "git",
