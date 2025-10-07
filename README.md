@@ -1,6 +1,6 @@
-# TISA 3630 Exam Practice - Flashcard Game
+# TISA 3630 - Sliding Card Game
 
-Interactive flashcard game with a tit-for-tat computer opponent for TISA 3630 exam preparation.
+Interactive flashcard game for TISA 3630 exam practice with AI opponent and smooth card animations.
 
 ## Features
 

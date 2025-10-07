@@ -3,42 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TISA 3630 - Sliding Card Game</title>
+    <title>UI Test - Card Game Enhanced</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="game-container">
-        <!-- Category Performance Bar Chart (hidden initially) -->
-        <div class="category-stats" id="category-stats" style="display: none;">
+        <!-- Category Performance Bar Chart -->
+        <div class="category-stats">
             <h2>Category Performance</h2>
             <div class="stats-container" id="stats-container">
                 <!-- Category bars will be dynamically generated -->
             </div>
         </div>
 
-        <!-- Score Display (hidden initially) -->
-        <div class="scores" id="scores" style="display: none;">
+        <!-- Score Display -->
+        <div class="scores">
             <div class="player-score">
-                <span class="label">Your Overall Score:</span>
-                <span class="percentage" id="player-percentage">0%</span>
+                <span class="label">Your Overall Score</span>
+                <span class="percentage" id="player-percentage">65%</span>
             </div>
             <div class="computer-score">
-                <span class="label">Computer Score:</span> 
-                <span class="percentage" id="computer-percentage">0%</span>
+                <span class="label">Computer Score</span> 
+                <span class="percentage" id="computer-percentage">70%</span>
             </div>
         </div>
 
-        <!-- Difficulty Slider -->
-        <div class="difficulty-control" id="difficulty-control">
-            <label for="difficulty-slider">Set Computer Difficulty (0-100%):</label>
+        <!-- Difficulty Slider (hidden initially) -->
+        <div class="difficulty-control" style="display: none;">
+            <label for="difficulty-slider">Computer Difficulty (0-100%):</label>
             <input type="range" id="difficulty-slider" min="0" max="100" value="50" class="slider">
             <span id="difficulty-value">50%</span>
-            <button id="confirm-difficulty-btn" class="btn primary" style="margin-top: 15px;">Confirm</button>
         </div>
 
-        <!-- Main Game Area (hidden initially) -->
-        <div class="game-area" id="game-area" style="display: none;">
+        <!-- Main Game Area -->
+        <div class="game-area">
             <!-- Left Side - Unasked Cards -->
             <div class="left-side">
                 <div class="side-label">Cards slide left right</div>
@@ -53,14 +52,17 @@
                     <div class="question-section">
                         <h3>Question</h3>
                         <div class="question-content" id="question-content">
-                            Set your difficulty and click "Confirm Difficulty & Start"!
+                            What is Jira and Gantt Pro examples of?
                         </div>
-                        <div class="category-tag" id="category-tag"></div>
+                        <div class="category-tag" id="category-tag">Business Management Systems</div>
                     </div>
                     <div class="choices-section">
                         <h4>Choices</h4>
                         <div class="choices-grid" id="choices-grid">
-                            <!-- Choice buttons will be populated here -->
+                            <button class="choice-btn">project management software</button>
+                            <button class="choice-btn">project visualization resources</button>
+                            <button class="choice-btn">tools that are used within project management software</button>
+                            <button class="choice-btn">customer relationship management software</button>
                         </div>
                     </div>
                 </div>
@@ -83,17 +85,16 @@
             </div>
         </div>
 
-        <!-- Game Controls (hidden initially) -->
-        <div class="game-controls" id="game-controls" style="display: none;">
-            <button id="start-btn" class="btn primary" style="display: none;">Start Game</button>
+        <!-- Game Controls -->
+        <div class="game-controls">
+            <button id="start-btn" class="btn primary">Start Game</button>
             <button id="reset-btn" class="btn secondary">Reset Game</button>
-            <button id="demo-animation-btn" class="btn secondary">Demo Animations</button>
             <button id="quit-btn" class="btn tertiary">Quit Server</button>
         </div>
 
         <!-- Color Palette Info -->
         <div class="color-info">
-            * Color Palette: Seashore
+            * Color Palette: Seashore (Enhanced with 3D Effects)
         </div>
     </div>
 

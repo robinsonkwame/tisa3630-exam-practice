@@ -1,0 +1,43 @@
+[build]
+  # Build command - just copy files since this is a static site
+  command = "npm run build"
+  
+  # Directory to publish
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Redirect rules for single page application
+[[redirects]]
+  from = "/quit"
+  to = "/.netlify/functions/quit"
+  status = 200
+
+# Headers for better caching
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=300"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# Development settings
+[dev]
+  command = "npm run dev"
+  port = 8080
+  
+# Local development redirects
+[[redirects]]
+  from = "/api/*"
+  to = "http://localhost:8080/.netlify/functions/:splat"
+  status = 200
+  force = true
