@@ -4,6 +4,7 @@ import { EffectFade } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import quizDataFile from '../../data/test_mock_exam.json';
+import CategoryAccuracyChart from './CategoryAccuracyChart';
 
 function GameLayout() {
   // Quiz state from QuizCarousel
@@ -19,6 +20,7 @@ function GameLayout() {
   
   // Use questions from the imported JSON file
   const quizData = quizDataFile.questions || [];
+  const categories = quizDataFile.metadata?.categories || [];
   
   // Early return if no quiz data
   if (!quizData || quizData.length === 0) {
@@ -257,11 +259,11 @@ function GameLayout() {
     <div className="relative z-10 w-full h-screen p-2 md:p-4">
         {/* Top bar container - B1 and B3 side by side */}
         <div className="absolute top-2 md:top-4 left-1/2 -translate-x-1/2 w-11/12 flex flex-row gap-2 items-center justify-center">
-          {/* B1 Top bar chart metrics */}
-          <div className="flex-1 md:w-64 lg:w-80 h-20 md:h-24 bg-white/20 backdrop-blur-sm rounded-lg flex flex-col items-center justify-center">
-            <span className="text-white font-bold text-sm md:text-base">Question {currentIndex + 1} of {quizData.length}</span>
-            <span className="text-white text-xs md:text-sm">Progress: {Math.round(((currentIndex + 1) / quizData.length) * 100)}%</span>
-          </div>
+          {/* B1 Category Accuracy Bar Chart */}
+          <CategoryAccuracyChart 
+            answeredCards={answeredCards}
+            categories={categories}
+          />
           
           {/* B3 Game difficulty slider */}
           <div className="w-32 md:w-44 h-20 md:h-24 bg-white/20 backdrop-blur-sm rounded-lg flex flex-col items-center justify-center">
