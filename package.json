@@ -7,6 +7,7 @@
     "dev": "live-server --port=8080 --open=index.html --watch=.",
     "dev-beach": "vite beach-test.html --port=3000",
     "beach-test": "vite --port=3000",
+    "beach-test-mobile": "vite --port=3000 --host",
     "build": "npm run copy-assets",
     "copy-assets": "mkdir -p dist && cp -r *.html src data node_modules dist/",
     "serve": "live-server dist --port=8080",
