@@ -1,0 +1,33 @@
+{
+  "name": "tisa3630-exam-practice",
+  "version": "1.0.0",
+  "description": "Interactive flashcard game with tit-for-tat computer opponent for TISA 3630 exam practice",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8080",
+    "dev": "python -m http.server 8080",
+    "setup-env": "python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt",
+    "convert-pdf": "source venv/bin/activate && python scripts/pdf_to_text.py",
+    "install-python-deps": "source venv/bin/activate && pip install -r requirements.txt"
+  },
+  "keywords": [
+    "flashcards",
+    "game",
+    "education",
+    "exam-practice",
+    "tit-for-tat"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "animejs": "^3.2.2"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "."
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

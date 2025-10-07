@@ -1,0 +1,158 @@
+# Python virtual environment
+venv/
+env/
+.env
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# Django/Flask
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+instance/
+.webassets-cache
+
+# mypy and type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+# Virtual environments
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# JavaScript/Node.js
+node_modules/
+package-lock.json
+yarn.lock
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+.nuxt/
+
+# Cache directories
+.cache/
+.parcel-cache/
+.npm/
+.yarn/
+.eslintcache
+.stylelintcache
+*.tsbuildinfo
+
+# Runtime and temporary files
+pids/
+*.pid
+*.seed
+*.pid.lock
+*.tmp
+*.temp
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Testbank questions (private)
+testbank/
+*testbank*
+test-bank/
+*test-bank*
+exam-bank/
+*exam-bank*
+questions/
+*questions*/
+original_questions/
+private_questions/
+data/
+
+# PDF files (don't commit test bank PDFs)
+*.pdf
+
+# Temporary text output files
+*_questions/
+# Ignore extracted testbank text files but allow requirements.txt and other important txt files
+*test*bank*.txt
+*testbank*.txt
+*questions*.txt
+extracted_*.txt
+
+# Local environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

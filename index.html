@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TISA 3630 Exam Practice - Flashcard Game</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Header -->
+        <header class="game-header">
+            <h1>TISA 3630 Exam Practice</h1>
+            <p>Flashcard Challenge vs. Computer</p>
+        </header>
+
+        <!-- Game Controls -->
+        <div class="game-controls">
+            <div class="difficulty-control">
+                <label for="difficulty-slider">Computer Difficulty:</label>
+                <input type="range" id="difficulty-slider" min="0" max="100" value="70" class="slider">
+                <span id="difficulty-value">70%</span>
+                <small>Higher = Computer makes fewer mistakes</small>
+            </div>
+            
+            <div class="game-buttons">
+                <button id="start-game-btn" class="btn primary">Start Game</button>
+                <button id="next-question-btn" class="btn secondary" disabled>Next Question</button>
+                <button id="reset-game-btn" class="btn tertiary">Reset</button>
+            </div>
+        </div>
+
+        <!-- Score Display -->
+        <div class="score-container">
+            <div class="score-box player">
+                <h3>You</h3>
+                <div class="score" id="player-score">0</div>
+                <div class="streak">Streak: <span id="player-streak">0</span></div>
+            </div>
+            
+            <div class="vs-indicator">VS</div>
+            
+            <div class="score-box computer">
+                <h3>Computer</h3>
+                <div class="score" id="computer-score">0</div>
+                <div class="streak">Streak: <span id="computer-streak">0</span></div>
+            </div>
+        </div>
+
+        <!-- Game Status -->
+        <div class="game-status">
+            <div id="game-message" class="message">Click "Start Game" to begin!</div>
+            <div id="round-counter" class="round-info">Round: <span id="current-round">0</span> / <span id="total-rounds">10</span></div>
+        </div>
+
+        <!-- Flashcard Container -->
+        <div class="flashcard-container">
+            <div class="flashcard" id="flashcard">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="card-header">
+                            <span class="question-number">Q1</span>
+                            <span class="card-type">Question</span>
+                        </div>
+                        <div class="card-content">
+                            <p id="question-text">Click "Start Game" to see your first question!</p>
+                        </div>
+                    </div>
+                    <div class="flashcard-back">
+                        <div class="card-header">
+                            <span class="question-number">A1</span>
+                            <span class="card-type">Answer</span>
+                        </div>
+                        <div class="card-content">
+                            <p id="answer-text">The answer will appear here.</p>
+                            <div class="explanation" id="explanation-text">
+                                Explanation will be shown here.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Answer Buttons -->
+            <div class="answer-buttons" id="answer-buttons">
+                <button class="answer-btn" id="answer-a" data-answer="A">A</button>
+                <button class="answer-btn" id="answer-b" data-answer="B">B</button>
+                <button class="answer-btn" id="answer-c" data-answer="C">C</button>
+                <button class="answer-btn" id="answer-d" data-answer="D">D</button>
+            </div>
+
+            <!-- Reveal Answer Button -->
+            <div class="reveal-container">
+                <button id="reveal-answer-btn" class="btn secondary" disabled>Reveal Answer</button>
+                <button id="flip-card-btn" class="btn tertiary" disabled>Flip Card</button>
+            </div>
+        </div>
+
+        <!-- Computer Choice Display -->
+        <div class="computer-choice" id="computer-choice">
+            <div class="choice-indicator">
+                <span class="label">Computer's Choice:</span>
+                <span class="choice" id="computer-answer">-</span>
+                <span class="result" id="computer-result"></span>
+            </div>
+        </div>
+
+        <!-- Results Display -->
+        <div class="results-container" id="results-container">
+            <div class="result-summary">
+                <h3>Round Results</h3>
+                <div class="result-details">
+                    <div class="player-result">
+                        <span class="label">Your Answer:</span>
+                        <span id="player-final-answer">-</span>
+                        <span id="player-result-icon">-</span>
+                    </div>
+                    <div class="computer-result">
+                        <span class="label">Computer Answer:</span>
+                        <span id="computer-final-answer">-</span>
+                        <span id="computer-result-icon">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Animation -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>Loading questions...</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="node_modules/animejs/lib/anime.min.js"></script>
+    <script src="assets/js/game.js"></script>
+</body>
+</html>
