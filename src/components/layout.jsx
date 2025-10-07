@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectFade } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
-import quizDataFile from '../../data/test_mock_exam.json';
+import questionsArray from '../../data/live-midterm-sample-questions.json';
 import CategoryAccuracyChart from './CategoryAccuracyChart';
 
 function GameLayout() {
@@ -18,9 +18,23 @@ function GameLayout() {
   const [isResizing, setIsResizing] = useState(false);
   const resizeRef = useRef(null);
   
+  // Format category names from underscores to proper titles
+  const formatCategoryName = (category) => {
+    return category
+      .replace(/_/g, ' ') // Replace underscores with spaces
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
+  };
+  
   // Use questions from the imported JSON file
-  const quizData = quizDataFile.questions || [];
-  const categories = quizDataFile.metadata?.categories || [];
+  const quizData = questionsArray.map(question => ({
+    ...question,
+    category: formatCategoryName(question.category)
+  })) || [];
+  
+  // Extract unique categories from questions
+  const categories = [...new Set(quizData.map(q => q.category))];
   
   // Early return if no quiz data
   if (!quizData || quizData.length === 0) {
@@ -193,6 +207,30 @@ function GameLayout() {
     setCurrentIndex(index);
     if (swiperRef.current) {
       swiperRef.current.slideTo(index, 500);
+    }
+  };
+  
+  // Check if all questions are answered
+  const allQuestionsAnswered = answeredCards.length === quizData.length;
+  
+  // Shuffle questions
+  const shuffleQuestions = () => {
+    const shuffled = [...quizData].sort(() => Math.random() - 0.5);
+    // Reset state
+    setAnsweredCards([]);
+    setSelectedChoices([]);
+    setCurrentIndex(0);
+    // Update quiz data with shuffled questions
+    window.location.reload(); // Simple approach - reload to reshuffle
+  };
+  
+  // Try again with same order
+  const tryAgain = () => {
+    setAnsweredCards([]);
+    setSelectedChoices([]);
+    setCurrentIndex(0);
+    if (swiperRef.current) {
+      swiperRef.current.slideTo(0, 500);
     }
   };
   
@@ -556,6 +594,71 @@ function GameLayout() {
             </SwiperSlide>
           ))}
         </Swiper>
+        
+        {/* Completion Overlay */}
+        {allQuestionsAnswered && (
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm rounded-2xl flex items-center justify-center z-50">
+            <div className="bg-white/95 backdrop-blur-md rounded-xl p-6 mx-4 max-w-md text-center shadow-2xl">
+              <div className="mb-4">
+                <h2 className="text-2xl font-bold text-gray-800 mb-2">🎉 Congratulations!</h2>
+                <p className="text-gray-600 mb-4">You've completed all {quizData.length} questions!</p>
+                
+                {/* Final Score */}
+                <div className="bg-gradient-to-r from-blue-50 to-green-50 rounded-lg p-4 mb-4">
+                  <div className="text-3xl font-bold text-green-600">
+                    {Math.round((answeredCards.filter(c => c.isCorrect).length / answeredCards.length) * 100)}%
+                  </div>
+                  <div className="text-sm text-gray-600">
+                    {answeredCards.filter(c => c.isCorrect).length} correct out of {answeredCards.length} questions
+                  </div>
+                </div>
+                
+                {/* Category Performance Summary */}
+                <div className="text-left mb-4">
+                  <h3 className="text-sm font-semibold text-gray-700 mb-2">Performance by Category:</h3>
+                  <div className="space-y-1">
+                    {categories.map(category => {
+                      const categoryCards = answeredCards.filter(c => c.category === category);
+                      const categoryCorrect = categoryCards.filter(c => c.isCorrect).length;
+                      const categoryTotal = categoryCards.length;
+                      const categoryPercent = categoryTotal > 0 ? Math.round((categoryCorrect / categoryTotal) * 100) : 0;
+                      
+                      if (categoryTotal === 0) return null;
+                      
+                      return (
+                        <div key={category} className="flex justify-between text-xs">
+                          <span className="text-gray-600 truncate">{category}</span>
+                          <span className={`font-semibold ${
+                            categoryPercent >= 80 ? 'text-green-600' :
+                            categoryPercent >= 60 ? 'text-yellow-600' : 'text-red-600'
+                          }`}>
+                            {categoryPercent}% ({categoryCorrect}/{categoryTotal})
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+              
+              {/* Action Buttons */}
+              <div className="flex gap-3">
+                <button
+                  onClick={tryAgain}
+                  className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg transition-all transform hover:scale-105 active:scale-95"
+                >
+                  🔄 Try Again
+                </button>
+                <button
+                  onClick={shuffleQuestions}
+                  className="flex-1 bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-4 rounded-lg transition-all transform hover:scale-105 active:scale-95"
+                >
+                  🔀 Reshuffle
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
         
         {/* Resize Handles */}
         <div 

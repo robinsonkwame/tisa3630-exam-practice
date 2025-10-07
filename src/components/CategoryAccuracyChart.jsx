@@ -47,7 +47,21 @@ function CategoryAccuracyChart({ answeredCards, categories }) {
       'Database': 'Database',
       'Computer Software': 'Software'
     };
-    return shortNames[category] || category.split(' ')[0];
+    
+    // If we have a custom short name, use it; otherwise create one from the category
+    if (shortNames[category]) {
+      return shortNames[category];
+    }
+    
+    // For dynamic categories, create a short name
+    const words = category.split(' ');
+    if (words.length === 1) {
+      return words[0].length > 8 ? words[0].substring(0, 8) : words[0];
+    } else if (words.length === 2) {
+      return words.map(w => w[0]).join('') + words[1].substring(1, 3);
+    } else {
+      return words.map(w => w[0]).join('');
+    }
   };
 
   // Sort categories by accuracy (highest first), then by total questions answered
