@@ -52,7 +52,7 @@ python scripts/pdf_to_text.py your-test-bank.pdf --identify-questions
 
 ### 3. Prepare Questions
 1. Review the extracted questions in the `_questions/` folder
-2. Select and format 100 questions for your game
+2. Be inspried by your test bank. Then create 100 questions for your game
 3. Update `data/sample-questions.json` with your questions
 
 ### 4. Run the Game
