@@ -257,21 +257,13 @@ function GameLayout() {
   
   return (
     <div className="relative z-10 w-full h-screen p-2 md:p-4">
-        {/* Top bar container - B1 and B3 side by side */}
+        {/* Top bar container - Category Accuracy Chart only */}
         <div className="absolute top-2 md:top-4 left-1/2 -translate-x-1/2 w-11/12 flex flex-row gap-2 items-center justify-center">
-          {/* B1 Category Accuracy Bar Chart */}
+          {/* Category Accuracy Bar Chart */}
           <CategoryAccuracyChart 
             answeredCards={answeredCards}
             categories={categories}
           />
-          
-          {/* B3 Game difficulty slider */}
-          <div className="w-32 md:w-44 h-20 md:h-24 bg-white/20 backdrop-blur-sm rounded-lg flex flex-col items-center justify-center">
-            <span className="text-white font-bold text-sm">Difficulty</span>
-            <span className="text-white text-sm">
-              {quizData && quizData[currentIndex] ? quizData[currentIndex].difficulty : 'medium'}
-            </span>
-          </div>
         </div>
 
         {/* C3 Swiper Stack Left - Desktop: Left, Mobile: Top Left */}
@@ -611,25 +603,14 @@ function GameLayout() {
         
         </div>
 
-        {/* Bottom scores bar */}
-        <div className="absolute bottom-2 md:bottom-4 left-1/2 -translate-x-1/2 flex gap-3 md:gap-4">
-          {/* B2 User Score */}
+        {/* Bottom score bar */}
+        <div className="absolute bottom-2 md:bottom-4 left-1/2 -translate-x-1/2">
+          {/* Your Score */}
           <div className="w-36 md:w-40 h-16 md:h-18 bg-white/20 backdrop-blur-sm rounded-lg flex flex-col items-center justify-center">
             <span className="text-white font-bold text-sm">Your Score</span>
             <span className="text-green-300 text-base md:text-lg font-bold">
               {answeredCards.length > 0 ? 
                 Math.round((answeredCards.filter(c => c.isCorrect).length / answeredCards.length) * 100) 
-                : 0
-              }%
-            </span>
-          </div>
-
-          {/* B2 Computer/Incorrect Score */}
-          <div className="w-36 md:w-40 h-16 md:h-18 bg-white/20 backdrop-blur-sm rounded-lg flex flex-col items-center justify-center">
-            <span className="text-white font-bold text-sm">Incorrect</span>
-            <span className="text-red-300 text-base md:text-lg font-bold">
-              {answeredCards.length > 0 ? 
-                Math.round((answeredCards.filter(c => !c.isCorrect).length / answeredCards.length) * 100) 
                 : 0
               }%
             </span>

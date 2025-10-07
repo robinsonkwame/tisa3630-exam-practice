@@ -1,0 +1,426 @@
+[
+  {
+    "id": 1,
+    "category": "Business_Management_Systems",
+    "question": "A growing e-commerce company needs a system to manage customer interactions, track sales leads, and automate marketing campaigns. Which type of business management system is specifically designed for these tasks?",
+    "choices": [
+      "Project Management Software",
+      "Human Resources (HR) Management System",
+      "Customer Relationship Management (CRM) System",
+      "Database Management System (DBMS)"
+    ],
+    "answer_type": "single",
+    "correct_answers": [
+      2
+    ],
+    "difficulty": "easy",
+    "explanation": "Customer Relationship Management (CRM) systems, like Salesforce, are designed to manage a company's interactions and relationships with current and potential customers."
+  },
+  {
+    "id": 2,
+    "category": "Business_Management_Systems",
+    "question": "Which of the following components are considered the three primary pillars of a comprehensive business management system?",
+    "choices": [
+      "A project management tool, a marketing automation platform, and a social media scheduler.",
+      "A decision-making information system, a predictive information system, and a database management system.",
+      "A cloud storage service, an on-premises server, and a software as a service (SaaS) subscription.",
+      "A human resources (HR) system, a supply chain management (SCM) system, and a financial accounting system."
+    ],
+    "answer_type": "single",
+    "correct_answers": [
+      1
+    ],
+    "difficulty": "medium",
+    "explanation": "A complete business management system integrates a database management system (DBMS) for data storage, a predictive information system for forecasting, and a decision-making information system to aid strategic planning."
+  },
+  {
+    "id": 3,
+    "category": "Business_Management_Systems",
+    "question": "What is the primary function of Big Data Analytics in a business context?",
+    "choices": [
+      "To accurately calculate employee payroll and benefits.",
+      "To design and manufacture new products more efficiently.",
+      "To manage day-to-day employee tasks and project workflows.",
+      "To process vast datasets from various sources to uncover insights, patterns, and trends for strategic decision-making."
+    ],
+    "answer_type": "single",
+    "correct_answers": [
+      3
+    ],
+    "difficulty": "medium",
+    "explanation": "Big Data Analytics involves using advanced techniques to examine large, diverse datasets to reveal patterns and insights that can guide business strategies. [2, 3, 4]"
+  },
+  {
+    "id": 4,
+    "category": "Computer_Hardware",
+    "question": "Which company is known for creating and exclusively using the Lightning connector for its mobile devices like iPhones and iPads?",
+    "choices": [
+      "Samsung",
+      "Google",
+      "Apple",
+      "Microsoft"
+    ],
+    "answer_type": "single",
+    "correct_answers": [
+      2
+    ],
+    "difficulty": "easy",
+    "explanation": "Apple developed and uses the proprietary Lightning connector for many of its devices, including iPhones, iPads, and AirPods."
+  },
+  {
+    "id": 5,
+    "category": "Computer_Hardware",
+    "question": "Among the following types of computers, which one possesses the highest level of processing power, designed for complex scientific calculations and simulations?",
+    "choices": [
+      "Mainframe",
+      "Supercomputer",
+      "Server",
+      "Desktop PC"
+    ],
+    "answer_type": "single",
+    "correct_answers": [
+      1
+    ],
+    "difficulty": "easy",
+    "explanation": "Supercomputers are the most powerful class of computers, built to perform intensive computational tasks that are too complex for other systems."
+  },
+  {
+    "id": 6,
+    "category": "Computer_Hardware",
+    "question": "A user wants a portable device primarily for media consumption, such as watching videos, reading e-books, and playing games. Which two of the following devices fall under the category of Personal Media Players (PMPs)?",
+    "choices": [
+      "A dedicated e-reader like the basic Kindle",
+      "An Apple iPod Touch",
+      "A tablet like the Amazon Kindle Fire",
+      "A standard desktop computer"
+    ],
+    "answer_type": "multiple",
+    "correct_answers": [
+      1,
+      2
+    ],
+    "difficulty": "medium",
+    "explanation": "The Apple iPod and Amazon Kindle Fire are designed for multimedia playback, including music, videos, and apps, making them Personal Media Players. A basic e-reader is primarily for books, and a desktop is not a portable media player."
+  },
+  {
+    "id": 7,
+    "category": "Computing_Networks",
+    "question": "Bitcoin is the most well-known cryptocurrency. Which of the following are also prominent examples of cryptocurrencies?",
+    "choices": [
+      "Ethereum",
+      "SWIFT",
+      "Litecoin",
+      "FedNow"
+    ],
+    "answer_type": "multiple",
+    "correct_answers": [
+      0,
+      2
+    ],
+    "difficulty": "easy",
+    "explanation": "Ethereum and Litecoin are two other widely recognized cryptocurrencies that operate on blockchain technology, similar to Bitcoin."
+  },
+  {
+    "id": 8,
+    "category": "Computing_Networks",
+    "question": "The World Wide Web is built on several key technologies. Which of the following statements accurately describe its core components?",
+    "choices": [
+      "HTML (Hypertext Markup Language) is the standard language used to create and structure web pages.",
+      "A URL (Uniform Resource Locator) serves as the unique address for a resource on the web.",
+      "HTTP (Hypertext Transfer Protocol) is the protocol used for transmitting web pages between servers and browsers.",
+      "FTP (File Transfer Protocol) is the primary method for displaying video content on websites."
+    ],
+    "answer_type": "multiple",
+    "correct_answers": [
+      0,
+      1,
+      2
+    ],
+    "difficulty": "medium",
+    "explanation": "The World Wide Web functions through the interplay of HTML for content structure, URLs for addressing, and HTTP for data transfer. FTP is used for file transfers, not for displaying web content directly."
+  },
+  {
+    "id": 9,
+    "category": "Computing_Networks",
+    "question": "What are the two fundamental components that constitute the internet's infrastructure?",
+    "choices": [
+      "A global network of private servers and a suite of antivirus software.",
+      "A collection of government-owned satellites and local cellular towers.",
+      "A physical \"backbone\" of interconnected hardware and the Internet Protocol (IP) software suite.",
+      "Individual home routers and the websites they connect to."
+    ],
+    "answer_type": "single",
+    "correct_answers": [
+      2
+    ],
+    "difficulty": "hard",
+    "explanation": "The internet is fundamentally composed of a massive physical hardware backbone (including fiber optic cables and routers) and the TCP/IP software protocols that govern how data is transmitted across this network."
+  },
+  {
+    "id": 10,
+    "category": "Competitive_Advantage",
+    "question": "How can a Management Information System (MIS) be leveraged to strengthen a company's position against competitors?",
+    "choices": [
+      "By providing access to competitors' confidential financial records.",
+      "By using inventory management features to prevent stockouts and reduce excess inventory, thus improving customer satisfaction and minimizing losses.",
+      "By automatically generating negative reviews for competing products.",
+      "By developing CRM functionalities to analyze customer data and foster loyalty, leading to repeat business."
+    ],
+    "answer_type": "multiple",
+    "correct_answers": [
+      1,
+      3
+    ],
+    "difficulty": "medium",
+    "explanation": "An MIS provides a competitive advantage by optimizing internal operations like inventory management and by enhancing customer relationships through CRM tools, both of which lead to a stronger market position. [5]"
+  },
+  {
+    "id": 11,
+    "category": "Competitive_Advantage",
+    "question": "Modern inventory management systems provide several key benefits to a business. Which of the following are direct advantages of using such a system?",
+    "choices": [
+      "Ensuring that popular products are consistently in stock.",
+      "Optimizing the use of shelf space in a retail environment.",
+      "Reducing the risk of products becoming obsolete or expiring before they can be sold.",
+      "Guaranteeing an increase in the company's stock price."
+    ],
+    "answer_type": "multiple",
+    "correct_answers": [
+      0,
+      1,
+      2
+    ],
+    "difficulty": "easy",
+    "explanation": "Effective inventory management systems help maintain stock availability, optimize physical space, and minimize losses from obsolete stock, all of which contribute to a competitive edge."
+  },
+  {
+    "id": 12,
+    "category": "Competitive_Advantage",
+    "question": "In the fast-food industry, McDonald's and Burger King offer very similar products and target the same customer base. What is the correct term for this type of market relationship?",
+    "choices": [
+      "Indirect Competition",
+      "Supplier-Client Relationship",
+      "Direct Competition",
+      "Market Substitution"
+    ],
+    "answer_type": "single",
+    "correct_answers": [
+      2
+    ],
+    "difficulty": "easy",
+    "explanation": "Direct competitors are businesses that offer similar products or services and target the same customer segment, such as McDonald's and Burger King in the burger market."
+  },
+  {
+    "id": 13,
+    "category": "Data_Analytics",
+    "question": "An individual skilled in using software, understanding business objectives, and possessing analytical capabilities to interpret data and create reports for management is best described as a:",
+    "choices": [
+      "Data Engineer",
+      "Data Analyst",
+      "Database Administrator",
+      "Data Scientist"
+    ],
+    "answer_type": "single",
+    "correct_answers": [
+      1
+    ],
+    "difficulty": "easy",
+    "explanation": "A data analyst is responsible for translating data into actionable insights and reports that support business decision-making."
+  },
+  {
+    "id": 14,
+    "category": "Data_Analytics",
+    "question": "The field of data analytics is constantly evolving. Which of the following are recognized as current and significant trends in the industry?",
+    "choices": [
+      "The integration of scalable Artificial Intelligence (AI) for more advanced analysis.",
+      "A move toward composable data and analytics to allow for more flexible and modular systems.",
+      "Data analytics is increasingly being treated as a core business function rather than a siloed department.",
+      "A complete shift away from data visualization to text-only reports."
+    ],
+    "answer_type": "multiple",
+    "correct_answers": [
+      0,
+      1,
+      2
+    ],
+    "difficulty": "medium",
+    "explanation": "Current trends in data analytics include the use of scalable AI, the adoption of composable architectures for flexibility, and the embedding of analytics as a central function within business operations."
+  },
+  {
+    "id": 15,
+    "category": "Data_Analytics",
+    "question": "Data can be categorized in various ways. Qualitative data that is ranked or ordered, such as customer satisfaction ratings from 'very unsatisfied' to 'very satisfied', is known as what type of data?",
+    "choices": [
+      "Nominal data",
+      "Discrete data",
+      "Ordinal data",
+      "Continuous data"
+    ],
+    "answer_type": "single",
+    "correct_answers": [
+      2
+    ],
+    "difficulty": "easy",
+    "explanation": "Ordinal data is a type of qualitative data where the values have a natural order or ranking, but the intervals between the ranks are not necessarily equal."
+  },
+  {
+    "id": 16,
+    "category": "MIS",
+    "question": "A newly established startup is setting up its first office. What is the most fundamental computing hardware they will likely purchase for their employees to perform daily tasks?",
+    "choices": [
+      "Mainframe computers",
+      "Supercomputers",
+      "Personal computers (desktops or laptops)",
+      "Transaction processing systems"
+    ],
+    "answer_type": "single",
+    "correct_answers": [
+      2
+    ],
+    "difficulty": "easy",
+    "explanation": "For a new company, providing personal computers to its workforce is the standard and essential first step for enabling productivity and accessing business software. [23, 24]"
+  },
+  {
+    "id": 17,
+    "category": "MIS",
+    "question": "Frederick Taylor's theory of scientific management was based on certain core beliefs about the relationship between a company and its workers. Which of the following statements align with his philosophy?",
+    "choices": [
+      "The success of a company is directly linked to the success and prosperity of its employees.",
+      "Increased worker productivity ultimately leads to the creation of more jobs.",
+      "Strict supervision is unnecessary as workers are naturally self-motivated.",
+      "Finding the right person for each specific job is less important than general training."
+    ],
+    "answer_type": "multiple",
+    "correct_answers": [
+      0,
+      1
+    ],
+    "difficulty": "medium",
+    "explanation": "Taylor's scientific management proposed that the prosperity of the employer and the employee were intertwined and that optimizing efficiency and productivity would benefit everyone by creating more opportunities."
+  },
+  {
+    "id": 18,
+    "category": "MIS",
+    "question": "The 'bullwhip effect' in a supply chain refers to the amplification of demand variability as one moves up the supply chain. How can a supply chain management (SCM) system help mitigate this effect?",
+    "choices": [
+      "By sharing real-time sales data across the supply chain, allowing manufacturers to have better visibility into actual consumer demand.",
+      "By creating artificial demand spikes to test the system's responsiveness.",
+      "By isolating each part of the supply chain to prevent communication between retailers and manufacturers.",
+      "By automating the process of over-ordering raw materials to ensure there is always a surplus."
+    ],
+    "answer_type": "single",
+    "correct_answers": [
+      0
+    ],
+    "difficulty": "hard",
+    "explanation": "An SCM system improves supply chain visibility, allowing partners to base their forecasts on actual end-customer demand rather than on the orders of the next entity in the chain, which dampens the bullwhip effect."
+  },
+  {
+    "id": 19,
+    "category": "Database",
+    "question": "Before the widespread use of computerized databases, traditional paper-based filing systems were common. What were two major problems inherent in these older systems?",
+    "choices": [
+      "Data redundancy (the same data being stored in multiple places).",
+      "High levels of data integrity and consistency.",
+      "Data inconsistency (the same data having different values in different places).",
+      "Simplified data security and access control."
+    ],
+    "answer_type": "multiple",
+    "correct_answers": [
+      0,
+      2
+    ],
+    "difficulty": "easy",
+    "explanation": "Traditional filing systems often led to data redundancy and inconsistency because information was manually duplicated and updated across different files or locations, leading to errors and inefficiencies."
+  },
+  {
+    "id": 20,
+    "category": "Database",
+    "question": "Within a database, what is the purpose of a report?",
+    "choices": [
+      "To input new data into the database tables.",
+      "To modify the underlying structure of the database.",
+      "To provide a formatted and summarized view of the information for printing or analysis.",
+      "To create the primary relationships between tables."
+    ],
+    "answer_type": "single",
+    "correct_answers": [
+      2
+    ],
+    "difficulty": "easy",
+    "explanation": "Reports are database objects used to present data from tables and queries in a structured, easy-to-read format, often for analysis or distribution."
+  },
+  {
+    "id": 21,
+    "category": "Database",
+    "question": "Web mining is the process of using data mining techniques to extract information from web documents and services. Which of the following are popular software applications used for web mining and analytics?",
+    "choices": [
+      "Microsoft Word",
+      "Tableau",
+      "Google Analytics",
+      "Adobe Photoshop"
+    ],
+    "answer_type": "multiple",
+    "correct_answers": [
+      1,
+      2
+    ],
+    "difficulty": "easy",
+    "explanation": "Tableau is a powerful data visualization and analytics tool, and Google Analytics is a widely used web analytics service. Both are used extensively in web mining to understand user behavior and website performance. [9, 21]"
+  },
+  {
+    "id": 22,
+    "category": "Computer_Software",
+    "question": "When evaluating a new computer for purchase, several factors are critical to consider. Which of the following are important technical and practical considerations?",
+    "choices": [
+      "The amount of Random Access Memory (RAM) included.",
+      "The availability and number of USB ports for connectivity.",
+      "The overall price and budget fit.",
+      "The color of the computer's casing."
+    ],
+    "answer_type": "multiple",
+    "correct_answers": [
+      0,
+      1,
+      2
+    ],
+    "difficulty": "easy",
+    "explanation": "When buying a new computer, key decision factors include its performance (RAM), connectivity options (USB ports), and cost, as these directly impact its usability and value."
+  },
+  {
+    "id": 23,
+    "category": "Computer_Software",
+    "question": "A 'two-in-one' computer is a hybrid device that offers the functionality of both a laptop and a tablet. What key feature enables this transformation?",
+    "choices": [
+      "An exceptionally long battery life.",
+      "A detachable or convertible keyboard.",
+      "A built-in optical (CD/DVD) drive.",
+      "The inclusion of a powerful graphics card."
+    ],
+    "answer_type": "single",
+    "correct_answers": [
+      1
+    ],
+    "difficulty": "easy",
+    "explanation": "The defining characteristic of a 2-in-1 computer is its physical design, which allows the keyboard to be detached or folded away, transforming the device from a laptop into a tablet."
+  },
+  {
+    "id": 24,
+    "category": "Computer_Software",
+    "question": "When considering the purchase of a new tablet, what are three essential specifications to evaluate?",
+    "choices": [
+      "The amount of internal storage capacity.",
+      "The physical size and resolution of the screen.",
+      "The amount of RAM, which affects multitasking performance.",
+      "Whether it includes a floppy disk drive."
+    ],
+    "answer_type": "multiple",
+    "correct_answers": [
+      0,
+      1,
+      2
+    ],
+    "difficulty": "easy",
+    "explanation": "For a tablet, the user experience is heavily influenced by storage space for apps and media, screen size for viewing, and RAM for smooth performance."
+  }
+]
