@@ -7,7 +7,7 @@ export default defineConfig({
   publicDir: 'assets',
   server: {
     port: 3000,
-    open: '/beach-test.html'
+    open: true
   },
   build: {
     outDir: 'dist'

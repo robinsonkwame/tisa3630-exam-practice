@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TISA 3630 - Sliding Card Game</title>
+    <link rel="stylesheet" href="src/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Category Performance Bar Chart (hidden initially) -->
+        <div class="category-stats" id="category-stats" style="display: none;">
+            <h2>Category Performance</h2>
+            <div class="stats-container" id="stats-container">
+                <!-- Category bars will be dynamically generated -->
+            </div>
+        </div>
+
+        <!-- Score Display (hidden initially) -->
+        <div class="scores" id="scores" style="display: none;">
+            <div class="player-score">
+                <span class="label">Your Overall Score:</span>
+                <span class="percentage" id="player-percentage">0%</span>
+            </div>
+            <div class="computer-score">
+                <span class="label">Computer Score:</span> 
+                <span class="percentage" id="computer-percentage">0%</span>
+            </div>
+        </div>
+
+        <!-- Difficulty Slider -->
+        <div class="difficulty-control" id="difficulty-control">
+            <label for="difficulty-slider">Set Computer Difficulty (0-100%):</label>
+            <input type="range" id="difficulty-slider" min="0" max="100" value="50" class="slider">
+            <span id="difficulty-value">50%</span>
+            <button id="confirm-difficulty-btn" class="btn primary" style="margin-top: 15px;">Confirm</button>
+        </div>
+
+        <!-- Main Game Area (hidden initially) -->
+        <div class="game-area" id="game-area" style="display: none;">
+            <!-- Left Side - Unasked Cards -->
+            <div class="left-side">
+                <div class="side-label">Cards slide left right</div>
+                <div class="card-stack" id="left-cards">
+                    <!-- Cards will be populated here -->
+                </div>
+            </div>
+
+            <!-- Center - Active Question -->
+            <div class="center-area">
+                <div class="question-card" id="active-card">
+                    <div class="question-section">
+                        <h3>Question</h3>
+                        <div class="question-content" id="question-content">
+                            Set your difficulty and click "Confirm Difficulty & Start"!
+                        </div>
+                        <div class="category-tag" id="category-tag"></div>
+                    </div>
+                    <div class="choices-section">
+                        <h4>Choices</h4>
+                        <div class="choices-grid" id="choices-grid">
+                            <!-- Choice buttons will be populated here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Answer Feedback -->
+                <div class="feedback-section" id="feedback-section" style="display: none;">
+                    <div class="correct-answer">Correct Answer: <span id="correct-answer-text"></span></div>
+                    <div class="explanation" id="explanation-text"></div>
+                    <div class="competitor-answer">Computer chose: <span id="computer-choice"></span></div>
+                    <button class="next-btn" id="next-btn">Next Question</button>
+                </div>
+            </div>
+
+            <!-- Right Side - Answered Cards -->
+            <div class="right-side">
+                <div class="side-label">Right cards dance happily. Wrong cards dance sadly.</div>
+                <div class="card-stack" id="right-cards">
+                    <!-- Answered cards will slide here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Controls (hidden initially) -->
+        <div class="game-controls" id="game-controls" style="display: none;">
+            <button id="start-btn" class="btn primary" style="display: none;">Start Game</button>
+            <button id="reset-btn" class="btn secondary">Reset Game</button>
+            <button id="demo-animation-btn" class="btn secondary">Demo Animations</button>
+            <button id="quit-btn" class="btn tertiary">Quit Server</button>
+        </div>
+
+        <!-- Color Palette Info -->
+        <div class="color-info">
+            * Color Palette: Seashore
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="node_modules/animejs/lib/anime.min.js"></script>
+    <script src="src/js/game.js"></script>
+</body>
+</html>
