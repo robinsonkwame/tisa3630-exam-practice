@@ -12,7 +12,7 @@ function BeachBackground({ text }) {
     canvas.height = window.innerHeight;
 
     const ripples = [];
-    const maxRipples = 8;
+    const maxRipples = 0;
 
     class Ripple {
       constructor(x, y) {
