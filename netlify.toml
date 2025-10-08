@@ -14,7 +14,7 @@
   to = "/.netlify/functions/quit"
   status = 200
 
-# Headers for better caching
+# Headers for better caching and MIME types
 [[headers]]
   for = "/data/*"
   [headers.values]
@@ -24,11 +24,31 @@
   for = "/*.css"
   [headers.values]
     Cache-Control = "public, max-age=86400"
+    Content-Type = "text/css"
 
 [[headers]]
   for = "/*.js"
   [headers.values]
     Cache-Control = "public, max-age=86400"
+    Content-Type = "application/javascript"
+
+[[headers]]
+  for = "/*.mjs"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    Content-Type = "application/javascript"
+
+[[headers]]
+  for = "/assets/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    Content-Type = "application/javascript"
+
+[[headers]]
+  for = "/assets/*.mjs"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    Content-Type = "application/javascript"
 
 # Development settings
 [dev]

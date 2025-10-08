@@ -1,0 +1,23 @@
+/*.js
+  Content-Type: application/javascript
+
+/*.mjs
+  Content-Type: application/javascript
+
+/assets/*.js
+  Content-Type: application/javascript
+
+/assets/*.mjs
+  Content-Type: application/javascript
+
+/*.css
+  Content-Type: text/css
+
+/assets/*.css
+  Content-Type: text/css
+
+/*.json
+  Content-Type: application/json
+
+/data/*.json
+  Content-Type: application/json
