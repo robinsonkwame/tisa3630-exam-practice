@@ -1,26 +1,15 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import BeachGame from './components/beach-game.jsx'
 import GameLayout from './components/layout.jsx'
 
 function App() {
   return (
-    <div className="relative w-full 
-      /* Allow scrolling on mobile to see full content */
-      min-h-screen h-auto overflow-x-hidden overflow-y-auto
-      /* Desktop: Fixed height */
-      md:h-screen md:overflow-hidden
+    <div className="relative w-full min-h-screen 
+      /* Clean gradient background instead of beach */
+      bg-gradient-to-br from-blue-400 via-cyan-500 to-teal-600
     ">
-      {/* Beach background layer */}
-      <div className="absolute inset-0 z-0 min-h-full">
-        <BeachGame />
-      </div>
-      
-      {/* Game layout overlay */}
-      <div className="relative z-10 min-h-full">
-        <GameLayout />
-      </div>
+      <GameLayout />
     </div>
   )
 }

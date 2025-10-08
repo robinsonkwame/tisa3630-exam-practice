@@ -13,7 +13,28 @@ function GameLayout() {
   const [selectedChoices, setSelectedChoices] = useState([]);
   const [showExplanation, setShowExplanation] = useState(false);
   const [currentAnswerResult, setCurrentAnswerResult] = useState(null);
+  const [showRotatePrompt, setShowRotatePrompt] = useState(false);
   const swiperRef = useRef(null);
+  
+  // Check for mobile portrait orientation
+  const checkOrientation = () => {
+    const isMobile = window.innerWidth < 768;
+    const isPortrait = window.innerHeight > window.innerWidth;
+    setShowRotatePrompt(isMobile && isPortrait);
+  };
+  
+  useEffect(() => {
+    checkOrientation();
+    window.addEventListener('resize', checkOrientation);
+    window.addEventListener('orientationchange', () => {
+      setTimeout(checkOrientation, 500); // Delay for orientation change
+    });
+    
+    return () => {
+      window.removeEventListener('resize', checkOrientation);
+      window.removeEventListener('orientationchange', checkOrientation);
+    };
+  }, []);
   
   // Resizable card state
   const [cardSize, setCardSize] = useState({ width: 320, height: 500 });
@@ -406,26 +427,65 @@ function GameLayout() {
     document.addEventListener('touchend', handleResizeEnd);
   };
   
+  // Mobile rotation prompt overlay
+  if (showRotatePrompt) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-600 to-purple-600 p-8">
+        <div className="bg-white rounded-2xl p-8 shadow-2xl text-center max-w-md">
+          <div className="text-6xl mb-6">📱↻</div>
+          <h2 className="text-xl font-bold text-gray-800 mb-4">Rotate Your Device</h2>
+          <p className="text-gray-600 mb-4">
+            For the best experience, please rotate your device to landscape mode.
+          </p>
+          <div className="bg-blue-50 rounded-lg p-3 mb-4">
+            <div className="text-sm text-gray-700 font-medium mb-2">
+              💻 Note: Designed for Laptop Use
+            </div>
+            <div className="text-xs text-gray-600">
+              This exam practice tool was primarily designed for laptop/desktop screens. Mobile experience may vary.
+            </div>
+          </div>
+          <div className="text-sm text-gray-500">
+            Landscape orientation helps prevent overlapping elements on mobile devices.
+          </div>
+        </div>
+      </div>
+    );
+  }
+  
   return (
-    <div className="relative z-10 w-full 
-      /* Mobile: Allow scrolling with extra bottom padding */
-      min-h-screen h-auto pb-8
-      /* Desktop: Fixed height */
-      md:h-screen md:pb-0
-      p-2 md:p-4
+    <div className="relative w-full min-h-screen p-4 
+      /* Landscape-focused layout */
+      overflow-x-hidden
     ">
-        {/* Top bar container - Category Accuracy Chart only */}
-        <div className="absolute top-2 md:top-4 left-1/2 -translate-x-1/2 w-11/12 flex flex-row gap-2 items-center justify-center">
+        {/* Top bar container - Category Accuracy Chart and Score */}
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 w-11/12 max-w-6xl flex flex-row gap-4 items-center justify-center">
           {/* Category Accuracy Bar Chart */}
           <CategoryAccuracyChart 
             answeredCards={answeredCards}
             categories={categories}
           />
+          
+          {/* Your Score Box */}
+          <div className="w-44 h-20 bg-white/20 backdrop-blur-sm rounded-lg flex flex-col items-center justify-center shadow-lg">
+            <span className="text-white font-bold text-sm">Your Score</span>
+            <span className="text-green-300 text-xl font-bold">
+              {answeredCards.length > 0 ? 
+                Math.round((answeredCards.filter(c => c.isCorrect).length / answeredCards.length) * 100) 
+                : 0
+              }%
+            </span>
+            {answeredCards.length > 0 && (
+              <span className="text-white text-xs opacity-75">
+                {answeredCards.filter(c => c.isCorrect).length}/{answeredCards.length}
+              </span>
+            )}
+          </div>
         </div>
 
-        {/* C3 Swiper Stack Left - Desktop: Left, Mobile: Top Left */}
+        {/* Left Stack - Optimized for landscape */}
         <div 
-          className="absolute left-4 md:left-8 top-36 md:top-1/2 md:translate-x-0 md:-translate-y-1/2 w-40 md:w-44 h-52 md:h-60 bg-white/20 backdrop-blur-sm rounded-lg flex flex-col items-center justify-center transition-all duration-300 hover:z-50 hover:scale-105 hover:shadow-2xl group cursor-pointer active:scale-110 md:active:scale-105 z-0"
+          className="absolute left-8 top-1/2 -translate-y-1/2 w-48 h-64 bg-white/20 backdrop-blur-sm rounded-lg flex flex-col items-center justify-center transition-all duration-300 hover:z-50 hover:scale-105 hover:shadow-2xl group cursor-pointer active:scale-110 z-0"
           onMouseEnter={(e) => {
             e.currentTarget.style.zIndex = '100';
           }}
@@ -511,9 +571,9 @@ function GameLayout() {
           </div>
         </div>
 
-        {/* C3 Swiper Stack Right - Desktop: Right, Mobile: Bottom Right (above footer) */}
+        {/* Right Stack - Optimized for landscape */}
         <div 
-          className="absolute right-4 md:left-auto md:right-8 bottom-24 md:bottom-auto md:top-1/2 md:translate-x-0 md:-translate-y-1/2 w-40 md:w-44 h-52 md:h-60 bg-white/20 backdrop-blur-sm rounded-lg flex flex-col items-center justify-center transition-all duration-300 hover:z-50 hover:scale-105 hover:shadow-2xl group cursor-pointer active:scale-110 md:active:scale-105 z-0"
+          className="absolute right-8 top-1/2 -translate-y-1/2 w-48 h-64 bg-white/20 backdrop-blur-sm rounded-lg flex flex-col items-center justify-center transition-all duration-300 hover:z-50 hover:scale-105 hover:shadow-2xl group cursor-pointer active:scale-110 z-0"
           onMouseEnter={(e) => {
             e.currentTarget.style.zIndex = '100';
           }}
@@ -606,7 +666,7 @@ function GameLayout() {
           </div>
         </div>
 
-        {/* C5 Main Card (Center) - Quiz Swiper */}
+        {/* Main Card - Centered for landscape */}
         <div 
           ref={resizeRef}
           className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 ${
@@ -615,10 +675,10 @@ function GameLayout() {
           style={{
             width: `${cardSize.width}px`,
             height: `${cardSize.height}px`,
-            minWidth: '280px',
-            maxWidth: '800px',
-            minHeight: '400px',
-            maxHeight: '700px'
+            minWidth: '400px',
+            maxWidth: '600px',
+            minHeight: '500px',
+            maxHeight: 'calc(100vh - 200px)'
           }}
         >
           <Swiper
@@ -899,20 +959,6 @@ function GameLayout() {
         
         </div>
 
-        {/* Bottom score bar */}
-        <div className="absolute bottom-2 md:bottom-4 left-1/2 -translate-x-1/2">
-          {/* Your Score */}
-          <div className="w-36 md:w-40 h-16 md:h-18 bg-white/20 backdrop-blur-sm rounded-lg flex flex-col items-center justify-center">
-            <span className="text-white font-bold text-sm">Your Score</span>
-            <span className="text-green-300 text-base md:text-lg font-bold">
-              {answeredCards.length > 0 ? 
-                Math.round((answeredCards.filter(c => c.isCorrect).length / answeredCards.length) * 100) 
-                : 0
-              }%
-            </span>
-          </div>
-        </div>
-        
         {/* Custom CSS for animations */}
         <style>{`
           @keyframes slideInRight {
