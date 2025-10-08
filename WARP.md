@@ -43,19 +43,22 @@ npm install
 
 ### Development Servers
 ```bash
-# Start development server (recommended)
-npm run dev
-# Serves on http://localhost:8080 with live reload
-
-# Alternative development servers
+# React development with Vite (RECOMMENDED for React JSX)
 npm run beach-test        # Vite server on port 3000
 npm run beach-test-mobile # Mobile testing server
-npm run netlify-dev       # Netlify development environment
+
+# Static file development (for vanilla HTML/JS only)
+npm run dev               # live-server on port 8080 
+
+# Netlify development environment
+npm run netlify-dev       # Full Netlify environment
 
 # Smart Python server (auto-shutdown)
 python smart_server.py [port]
 # Default port 8080, auto-quits on browser disconnect
 ```
+
+**Important**: For React JSX development, always use `npm run beach-test` (Vite) instead of `npm run dev` (live-server) to avoid JSX compilation issues.
 
 ### PDF Processing & Question Management
 ```bash
@@ -199,3 +202,17 @@ The tit-for-tat AI can be adjusted by modifying:
 - Adaptation window (currently last 3 answers)
 - Maximum adjustment range (currently ±15%)
 - Response delay timing for realism
+
+## Troubleshooting
+
+### JSX MIME Type Issues
+If you encounter "Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of 'text/jsx'" errors:
+
+1. **Use the correct development server**: Always use `npm run beach-test` for React development
+2. **Verify MIME type configuration**: JSX MIME types are configured in both `netlify.toml` and `public/_headers`
+3. **Check server configuration**: The project includes JSX → JavaScript MIME type mappings for proper compilation
+
+### Development Server Selection
+- **React JSX files**: Use `npm run beach-test` (Vite)
+- **Static HTML/vanilla JS**: Use `npm run dev` (live-server)
+- **Full deployment testing**: Use `npm run netlify-dev`
