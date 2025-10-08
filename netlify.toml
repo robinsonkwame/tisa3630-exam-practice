@@ -50,6 +50,24 @@
     Cache-Control = "public, max-age=86400"
     Content-Type = "application/javascript"
 
+[[headers]]
+  for = "/*.jsx"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    Content-Type = "application/javascript"
+
+[[headers]]
+  for = "/src/*.jsx"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    Content-Type = "application/javascript"
+
+[[headers]]
+  for = "/assets/*.jsx"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    Content-Type = "application/javascript"
+
 # Development settings
 [dev]
   command = "npm run dev"

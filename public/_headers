@@ -21,3 +21,12 @@
 
 /data/*.json
   Content-Type: application/json
+
+/*.jsx
+  Content-Type: application/javascript
+
+/src/*.jsx
+  Content-Type: application/javascript
+
+/assets/*.jsx
+  Content-Type: application/javascript

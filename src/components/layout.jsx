@@ -36,8 +36,8 @@ function GameLayout() {
     };
   }, []);
   
-  // Resizable card state
-  const [cardSize, setCardSize] = useState({ width: 320, height: 500 });
+  // Resizable card state - increased default height to fit all choices
+  const [cardSize, setCardSize] = useState({ width: 320, height: 600 });
   const [isResizing, setIsResizing] = useState(false);
   const resizeRef = useRef(null);
   
@@ -404,10 +404,10 @@ function GameLayout() {
         newWidth = Math.max(280, Math.min(800, startWidth - (currentX - startX)));
       }
       if (direction.includes('bottom')) {
-        newHeight = Math.max(400, Math.min(700, startHeight + (currentY - startY)));
+        newHeight = Math.max(600, Math.min(800, startHeight + (currentY - startY)));
       }
       if (direction.includes('top')) {
-        newHeight = Math.max(400, Math.min(700, startHeight - (currentY - startY)));
+        newHeight = Math.max(600, Math.min(800, startHeight - (currentY - startY)));
       }
       
       setCardSize({ width: newWidth, height: newHeight });
@@ -677,8 +677,8 @@ function GameLayout() {
             height: `${cardSize.height}px`,
             minWidth: '400px',
             maxWidth: '600px',
-            minHeight: '500px',
-            maxHeight: 'calc(100vh - 200px)'
+            minHeight: '600px', // Increased to fit 4 choices comfortably
+            maxHeight: 'calc(100vh - 150px)' // Adjusted for better fit
           }}
         >
           <Swiper
@@ -744,9 +744,9 @@ function GameLayout() {
                   </div>
                   
                   {/* Choices */}
-                  <div className="flex-1 min-h-0">
+                  <div className="flex-1">
                     <div className="text-xs text-gray-500 uppercase tracking-wide mb-2">Choices</div>
-                    <div className="h-full overflow-y-auto space-y-1.5 md:space-y-2 pr-1">
+                    <div className="space-y-2 md:space-y-3">
                       {card.choices.map((choice, choiceIdx) => {
                         const isSelected = selectedChoices.includes(choiceIdx) && idx === currentIndex;
                         const wasSelected = idx !== currentIndex && 
@@ -757,7 +757,7 @@ function GameLayout() {
                             key={choiceIdx}
                             onClick={() => idx === currentIndex && toggleChoice(choiceIdx)}
                             disabled={idx !== currentIndex}
-                            className={`w-full text-left p-1.5 md:p-3 rounded-lg md:rounded-xl border-2 transition-all text-xs md:text-sm shadow-sm hover:shadow-md transform hover:scale-102 leading-tight ${
+                            className={`w-full text-left p-2 md:p-3 rounded-lg md:rounded-xl border-2 transition-all text-sm leading-relaxed shadow-sm hover:shadow-md transform hover:scale-102 ${
                               isSelected || wasSelected
                                 ? 'bg-gradient-to-r from-blue-500 to-blue-600 border-blue-600 text-white shadow-lg scale-102'
                                 : 'bg-white/95 backdrop-blur-sm border-gray-200 text-gray-800 hover:border-blue-300 hover:bg-blue-50/70'
