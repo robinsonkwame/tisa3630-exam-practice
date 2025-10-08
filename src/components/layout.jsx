@@ -11,6 +11,8 @@ function GameLayout() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answeredCards, setAnsweredCards] = useState([]);
   const [selectedChoices, setSelectedChoices] = useState([]);
+  const [showExplanation, setShowExplanation] = useState(false);
+  const [currentAnswerResult, setCurrentAnswerResult] = useState(null);
   const swiperRef = useRef(null);
   
   // Resizable card state
@@ -88,8 +90,17 @@ function GameLayout() {
       isCorrect,
       index: currentIndex
     };
+    
+    // Store answer result for explanation
+    setCurrentAnswerResult(answeredCard);
+    
+    // Show explanation if available
+    if (currentCard.explanation) {
+      setShowExplanation(true);
+      return; // Don't proceed until user continues
+    }
 
-    // Add flying card animation before state update
+    // Add flying card animation before state update (for questions without explanations)
     const createFlyingCard = () => {
       const mainCard = document.querySelector('.swiper-slide-active');
       const completedStack = document.querySelector('.completed-questions-scroll');
@@ -215,13 +226,113 @@ function GameLayout() {
   
   // Shuffle questions
   const shuffleQuestions = () => {
-    const shuffled = [...quizData].sort(() => Math.random() - 0.5);
-    // Reset state
     setAnsweredCards([]);
     setSelectedChoices([]);
     setCurrentIndex(0);
-    // Update quiz data with shuffled questions
+    setShowExplanation(false);
+    setCurrentAnswerResult(null);
     window.location.reload(); // Simple approach - reload to reshuffle
+  };
+  
+  // Continue from explanation screen
+  const continueFromExplanation = () => {
+    if (!currentAnswerResult) return;
+    
+    setShowExplanation(false);
+    const answeredCard = currentAnswerResult;
+    
+    // Add flying card animation
+    const createFlyingCard = () => {
+      const mainCard = document.querySelector('.swiper-slide-active');
+      const completedStack = document.querySelector('.completed-questions-scroll');
+      
+      if (mainCard && completedStack) {
+        const flyingCard = document.createElement('div');
+        flyingCard.className = 'flying-card-mini';
+        flyingCard.innerHTML = `
+          <div class="p-1 text-white text-xs font-semibold">
+            ${answeredCard.category.split(' ')[0]}
+          </div>
+        `;
+        
+        const mainRect = mainCard.getBoundingClientRect();
+        const stackRect = completedStack.getBoundingClientRect();
+        
+        flyingCard.style.cssText = `
+          position: fixed;
+          left: ${mainRect.left + mainRect.width/2 - 25}px;
+          top: ${mainRect.top + mainRect.height/2 - 32}px;
+          width: 50px;
+          height: 64px;
+          background: ${answeredCard.isCorrect ? 
+            'linear-gradient(135deg, rgba(34, 197, 94, 0.9), rgba(22, 163, 74, 0.7))' : 
+            'linear-gradient(135deg, rgba(239, 68, 68, 0.9), rgba(220, 38, 38, 0.7))'}
+          border-radius: 8px;
+          border: 2px solid ${answeredCard.isCorrect ? 'rgba(34, 197, 94, 0.5)' : 'rgba(239, 68, 68, 0.5)'};
+          z-index: 1000;
+          transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        `;
+        
+        document.body.appendChild(flyingCard);
+        
+        requestAnimationFrame(() => {
+          flyingCard.style.left = stackRect.right - 30 + 'px';
+          flyingCard.style.top = stackRect.top + 20 + 'px';
+          flyingCard.style.transform = 'scale(0.8) rotateZ(15deg)';
+          flyingCard.style.opacity = '0.8';
+        });
+        
+        setTimeout(() => {
+          document.body.removeChild(flyingCard);
+        }, 800);
+      }
+    };
+    
+    createFlyingCard();
+    
+    // Update state and proceed
+    setTimeout(() => {
+      setAnsweredCards(prev => {
+        const existingCardIndex = prev.findIndex(card => card.index === currentIndex);
+        if (existingCardIndex >= 0) {
+          const updatedCards = [...prev];
+          updatedCards[existingCardIndex] = answeredCard;
+          return updatedCards;
+        } else {
+          return [...prev, answeredCard];
+        }
+      });
+      setSelectedChoices([]);
+      setCurrentAnswerResult(null);
+      
+      // Find next question
+      let nextIndex = currentIndex + 1;
+      if (currentIndex === Math.max(...answeredCards.map(c => c.index), -1)) {
+        if (nextIndex < quizData.length) {
+          setCurrentIndex(nextIndex);
+          setTimeout(() => {
+            if (swiperRef.current && swiperRef.current.slideNext) {
+              swiperRef.current.slideNext();
+            }
+          }, 100);
+        }
+      } else {
+        const answeredIndices = new Set(answeredCards.map(c => c.index));
+        answeredIndices.add(currentIndex);
+        for (let i = 0; i < quizData.length; i++) {
+          if (!answeredIndices.has(i)) {
+            setCurrentIndex(i);
+            setTimeout(() => {
+              if (swiperRef.current) {
+                swiperRef.current.slideTo(i, 500);
+              }
+            }, 100);
+            break;
+          }
+        }
+      }
+    }, 200);
   };
   
   // Try again with same order
@@ -229,6 +340,8 @@ function GameLayout() {
     setAnsweredCards([]);
     setSelectedChoices([]);
     setCurrentIndex(0);
+    setShowExplanation(false);
+    setCurrentAnswerResult(null);
     if (swiperRef.current) {
       swiperRef.current.slideTo(0, 500);
     }
@@ -294,7 +407,13 @@ function GameLayout() {
   };
   
   return (
-    <div className="relative z-10 w-full h-screen p-2 md:p-4">
+    <div className="relative z-10 w-full 
+      /* Mobile: Allow scrolling with extra bottom padding */
+      min-h-screen h-auto pb-8
+      /* Desktop: Fixed height */
+      md:h-screen md:pb-0
+      p-2 md:p-4
+    ">
         {/* Top bar container - Category Accuracy Chart only */}
         <div className="absolute top-2 md:top-4 left-1/2 -translate-x-1/2 w-11/12 flex flex-row gap-2 items-center justify-center">
           {/* Category Accuracy Bar Chart */}
@@ -656,6 +775,80 @@ function GameLayout() {
                   🔀 Reshuffle
                 </button>
               </div>
+            </div>
+          </div>
+        )}
+        
+        {/* Explanation Overlay */}
+        {showExplanation && currentAnswerResult && (
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm rounded-2xl flex items-center justify-center z-50 p-4">
+            <div className="bg-white/95 backdrop-blur-md rounded-xl p-6 max-w-lg w-full max-h-[90%] overflow-y-auto shadow-2xl">
+              {/* Result Header */}
+              <div className={`text-center mb-4 p-4 rounded-lg ${
+                currentAnswerResult.isCorrect 
+                  ? 'bg-green-50 border-2 border-green-200' 
+                  : 'bg-red-50 border-2 border-red-200'
+              }`}>
+                <div className={`text-2xl font-bold mb-2 ${
+                  currentAnswerResult.isCorrect ? 'text-green-600' : 'text-red-600'
+                }`}>
+                  {currentAnswerResult.isCorrect ? '✅ Correct!' : '❌ Incorrect'}
+                </div>
+                <div className="text-sm text-gray-600">
+                  {currentAnswerResult.category}
+                </div>
+              </div>
+              
+              {/* Question Review */}
+              <div className="mb-4">
+                <h3 className="font-semibold text-gray-800 mb-2">Question:</h3>
+                <p className="text-sm text-gray-700 mb-3">{quizData[currentIndex].question}</p>
+                
+                {/* Show selected vs correct answers */}
+                <div className="space-y-2">
+                  {quizData[currentIndex].choices.map((choice, idx) => {
+                    const wasSelected = currentAnswerResult.selectedChoices.includes(idx);
+                    const isCorrect = quizData[currentIndex].correct_answers.includes(idx);
+                    
+                    if (!wasSelected && !isCorrect) return null;
+                    
+                    return (
+                      <div key={idx} className={`p-2 rounded text-xs ${
+                        isCorrect && wasSelected 
+                          ? 'bg-green-100 border border-green-300 text-green-800' // Correct selection
+                          : isCorrect && !wasSelected
+                          ? 'bg-blue-100 border border-blue-300 text-blue-800' // Missed correct answer
+                          : wasSelected && !isCorrect
+                          ? 'bg-red-100 border border-red-300 text-red-800' // Wrong selection
+                          : 'bg-gray-100 border border-gray-300 text-gray-800'
+                      }`}>
+                        <span className="font-medium">
+                          {isCorrect && wasSelected ? '✅ Your correct choice: ' :
+                           isCorrect && !wasSelected ? '💡 Correct answer: ' :
+                           '❌ Your incorrect choice: '}
+                        </span>
+                        {choice}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              
+              {/* Explanation */}
+              <div className="mb-6">
+                <h3 className="font-semibold text-gray-800 mb-2">Explanation:</h3>
+                <div className="bg-blue-50 rounded-lg p-3 text-sm text-gray-700 leading-relaxed">
+                  {quizData[currentIndex].explanation}
+                </div>
+              </div>
+              
+              {/* Continue Button */}
+              <button
+                onClick={continueFromExplanation}
+                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg transition-all transform hover:scale-105 active:scale-95"
+              >
+                Continue ➡️
+              </button>
             </div>
           </div>
         )}

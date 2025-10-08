@@ -87,12 +87,24 @@ function BeachBackground({ text }) {
   }, []);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full 
+      /* Mobile: Cover full scrollable area */
+      min-h-screen h-auto
+      /* Desktop: Fixed height */
+      md:h-screen 
+      overflow-hidden
+    ">
       {/* SVG Beach Background */}
       <img 
         src="/svg/svg_output.svg"
         alt="Beach background"
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full 
+          /* Mobile: Cover scrollable area */
+          min-h-full h-auto
+          /* Desktop: Full height */
+          md:h-full 
+          object-cover object-center
+        "
       />
       
       {/* Gradient overlay */}

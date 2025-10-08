@@ -6,14 +6,19 @@ import GameLayout from './components/layout.jsx'
 
 function App() {
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full 
+      /* Allow scrolling on mobile to see full content */
+      min-h-screen h-auto overflow-x-hidden overflow-y-auto
+      /* Desktop: Fixed height */
+      md:h-screen md:overflow-hidden
+    ">
       {/* Beach background layer */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 min-h-full">
         <BeachGame />
       </div>
       
       {/* Game layout overlay */}
-      <div className="absolute inset-0 z-10">
+      <div className="relative z-10 min-h-full">
         <GameLayout />
       </div>
     </div>
