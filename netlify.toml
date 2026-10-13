@@ -8,12 +8,6 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Redirect rules for single page application
-[[redirects]]
-  from = "/quit"
-  to = "/.netlify/functions/quit"
-  status = 200
-
 # Headers for better caching
 [[headers]]
   for = "/data/*"
@@ -34,10 +28,3 @@
 [dev]
   command = "npm run dev"
   port = 8080
-  
-# Local development redirects
-[[redirects]]
-  from = "/api/*"
-  to = "http://localhost:8080/.netlify/functions/:splat"
-  status = 200
-  force = true
