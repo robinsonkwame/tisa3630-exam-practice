@@ -3,102 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TISA 3630 - Sliding Card Game</title>
+    <title>TISA 3630 Exam Practice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="game-container">
-        <!-- Category Performance Bar Chart (hidden initially) -->
-        <div class="category-stats" id="category-stats" style="display: none;">
-            <h2>Category Performance</h2>
-            <div class="stats-container" id="stats-container">
-                <!-- Category bars will be dynamically generated -->
-            </div>
-        </div>
+    <a class="skip-link" href="#question-card">Skip to current question</a>
 
-        <!-- Score Display (hidden initially) -->
-        <div class="scores" id="scores" style="display: none;">
-            <div class="player-score">
-                <span class="label">Your Overall Score:</span>
-                <span class="percentage" id="player-percentage">0%</span>
-            </div>
-            <div class="computer-score">
-                <span class="label">Computer Score:</span> 
-                <span class="percentage" id="computer-percentage">0%</span>
-            </div>
-        </div>
+    <header class="site-header">
+        <h1>TISA 3630 Exam Practice</h1>
+        <p class="tagline">Practice cards for the midterm</p>
+    </header>
 
-        <!-- Difficulty Slider -->
-        <div class="difficulty-control" id="difficulty-control">
-            <label for="difficulty-slider">Set Computer Difficulty (0-100%):</label>
-            <input type="range" id="difficulty-slider" min="0" max="100" value="50" class="slider">
-            <span id="difficulty-value">50%</span>
-            <button id="confirm-difficulty-btn" class="btn primary" style="margin-top: 15px;">Confirm</button>
-        </div>
-
-        <!-- Main Game Area (hidden initially) -->
-        <div class="game-area" id="game-area" style="display: none;">
-            <!-- Left Side - Unasked Cards -->
-            <div class="left-side">
-                <div class="side-label">Cards slide left right</div>
-                <div class="card-stack" id="left-cards">
-                    <!-- Cards will be populated here -->
+    <!-- Game screen -->
+    <div id="game-screen" class="game-screen">
+        <!-- Overall score + category accuracy -->
+        <section class="scoreboard" aria-labelledby="scoreboard-heading">
+            <h2 id="scoreboard-heading" class="visually-hidden">Scoreboard</h2>
+            <div class="score-tiles">
+                <div class="score-tile player">
+                    <span class="score-label">Overall score</span>
+                    <span class="score-value" id="player-percentage">0%</span>
+                    <span class="score-detail" id="player-detail">0 of 0 correct</span>
+                </div>
+                <div class="score-tile progress">
+                    <span class="score-label">Progress</span>
+                    <span class="score-value" id="progress-value">0 / 0</span>
+                    <span class="score-detail">questions answered</span>
                 </div>
             </div>
 
-            <!-- Center - Active Question -->
-            <div class="center-area">
-                <div class="question-card" id="active-card">
-                    <div class="question-section">
-                        <h3>Question</h3>
-                        <div class="question-content" id="question-content">
-                            Set your difficulty and click "Confirm Difficulty & Start"!
-                        </div>
-                        <div class="category-tag" id="category-tag"></div>
+            <details class="category-stats" id="category-details" open>
+                <summary><h3>Category accuracy</h3></summary>
+                <ul class="category-list" id="category-list"></ul>
+            </details>
+        </section>
+
+        <main class="game-area">
+            <!-- Left: remaining cards -->
+            <aside class="stack-panel deck-panel" aria-labelledby="deck-heading">
+                <h2 id="deck-heading" class="panel-heading">Up next</h2>
+                <div class="deck" aria-hidden="true" id="deck-visual"></div>
+                <p class="deck-count" id="deck-count">0 cards left</p>
+            </aside>
+
+            <!-- Center: active question -->
+            <section class="question-card" id="question-card" tabindex="-1" aria-labelledby="question-text">
+                <div class="question-header">
+                    <span class="question-number" id="question-number">Question 1</span>
+                    <span class="category-tag" id="category-tag"></span>
+                </div>
+                <h2 class="question-text" id="question-text">Loading…</h2>
+                <p class="multi-hint" id="multi-hint" hidden>Select all that apply, then check your answer.</p>
+                <div class="choices" id="choices" role="group" aria-labelledby="question-text"></div>
+                <button type="button" class="btn primary check-btn" id="check-btn" hidden disabled>Check answer</button>
+                <p class="help kbd-hint" id="kbd-hint">Tip: press 1–4 or A–D to answer.</p>
+
+                <div class="feedback" id="feedback" hidden>
+                    <p class="feedback-result" id="feedback-result"></p>
+                    <div class="correct-answers">
+                        <strong id="correct-answer-label">Correct answer:</strong>
+                        <ul id="correct-answer-list"></ul>
                     </div>
-                    <div class="choices-section">
-                        <h4>Choices</h4>
-                        <div class="choices-grid" id="choices-grid">
-                            <!-- Choice buttons will be populated here -->
-                        </div>
-                    </div>
+                    <p class="explanation" id="explanation-text"></p>
+                    <button type="button" class="btn primary" id="next-btn">Next question</button>
                 </div>
-                
-                <!-- Answer Feedback -->
-                <div class="feedback-section" id="feedback-section" style="display: none;">
-                    <div class="correct-answer">Correct Answer: <span id="correct-answer-text"></span></div>
-                    <div class="explanation" id="explanation-text"></div>
-                    <div class="competitor-answer">Computer chose: <span id="computer-choice"></span></div>
-                    <button class="next-btn" id="next-btn">Next Question</button>
-                </div>
-            </div>
+            </section>
 
-            <!-- Right Side - Answered Cards -->
-            <div class="right-side">
-                <div class="side-label">Right cards dance happily. Wrong cards dance sadly.</div>
-                <div class="card-stack" id="right-cards">
-                    <!-- Answered cards will slide here -->
-                </div>
-            </div>
-        </div>
+            <!-- Right: answered cards -->
+            <aside class="stack-panel answered-panel" aria-labelledby="answered-heading">
+                <h2 id="answered-heading" class="panel-heading">Answered</h2>
+                <p class="empty-note" id="answered-empty">No answers yet.</p>
+                <ol class="answered-list" id="answered-list" reversed></ol>
+            </aside>
+        </main>
 
-        <!-- Game Controls (hidden initially) -->
-        <div class="game-controls" id="game-controls" style="display: none;">
-            <button id="start-btn" class="btn primary" style="display: none;">Start Game</button>
-            <button id="reset-btn" class="btn secondary">Reset Game</button>
-            <button id="demo-animation-btn" class="btn secondary">Demo Animations</button>
-            <button id="quit-btn" class="btn tertiary">Quit Server</button>
-        </div>
+        <!-- Results (shown at end) -->
+        <section class="panel results" id="results" tabindex="-1" hidden aria-labelledby="results-heading">
+            <h2 id="results-heading">Round complete</h2>
+            <p id="results-summary"></p>
+            <p id="results-weakest"></p>
+            <button type="button" class="btn primary" id="play-again-btn">Play again</button>
+        </section>
 
-        <!-- Color Palette Info -->
-        <div class="color-info">
-            * Color Palette: Seashore
+        <div class="game-controls">
+            <button type="button" id="reset-btn" class="btn secondary">Restart (shuffle)</button>
+            <button type="button" id="quit-btn" class="btn secondary" hidden>Quit server</button>
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="node_modules/animejs/lib/anime.min.js"></script>
+    <!-- Screen-reader announcements -->
+    <div id="announcer" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+
     <script src="game.js"></script>
 </body>
 </html>

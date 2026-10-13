@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "live-server --port=8080 --open=index.html --watch=.",
     "build": "npm run copy-assets",
-    "copy-assets": "mkdir -p dist && cp -r *.html *.css *.js data node_modules dist/",
+    "copy-assets": "rm -rf dist && mkdir -p dist/data && cp index.html styles.css game.js dist/ && cp data/questions.json dist/data/",
     "serve": "live-server dist --port=8080",
     "start": "npm run dev",
     "netlify-dev": "netlify dev",
@@ -23,9 +23,7 @@
   ],
   "author": "Your Name",
   "license": "MIT",
-  "dependencies": {
-    "animejs": "^3.2.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "live-server": "^1.2.2",
     "netlify-cli": "^17.0.0",

@@ -156,3 +156,5 @@ extracted_*.txt
 .env.development.local
 .env.test.local
 .env.production.local
+# Local question data (scraped site questions, source PDF)
+data/
